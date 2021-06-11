@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import Product from '../product'
 import Loader from '../../atoms/loading-wheel'
 import Error from '../../atoms/error'
-import { getAllProducts, updateLikedProducts } from '../../core/api/products'
+import { getLikedProducts, removeLikedProducts } from '../../core/api/products'
 import { Container, Row, Col } from 'react-bootstrap'
-import './home.scss'
+import './liked.scss'
 
-const blockname = 'home'
+const blockname = 'liked'
 
-export default class Home extends Component {
+export default class Liked extends Component {
+
 
     state = {
         isLoading: true,
@@ -16,23 +17,30 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        getAllProducts()
-        .then(res => this.setState({ products: res.data, isLoading: false }))
-        .catch(err => this.setState({isError: true, isLoading: false}))
+        getLikedProducts()
+            .then(res => {
+                if (res.data.length > 0) {
+                    this.setState({ products: res.data, isLoading: false })
+                } else {
+                    this.setState({ isError: true, isLoading: false })
+                }
+            })
+            .catch(err => this.setState({ isError: true }))
     }
 
-    renderProducts = () => {
+    renderLikedProducts = () => {
         const productsList = [];
         this.state.products.forEach(product => {
             productsList.push(
                 <Col className={`${blockname}__col`} key={product.id}>
                     <Product
                         id={product.id}
+                        parentIsLiked={true}
                         liked={product.liked}
                         name={product.productName}
                         description={product.productDescription}
                         img={product.productImg}
-                        updateLiked={this.updateLiked}
+                        updateLiked={this.removeLiked}
                     />
                 </Col>
             )
@@ -40,13 +48,18 @@ export default class Home extends Component {
         return productsList;
     }
 
-    updateLiked = (id) => {
+    removeLiked = (id) => {
         this.setState({ isLoading: true });
-        // Call API to update Liked List in the backend
-        updateLikedProducts({id})
-        .then(res => this.setState({ products: res.data, isLoading: false }))
-        .catch(err => this.setState({isError: true}))
-        this.setState({ isLoading: false })
+        // Call API to delete Liked item in the backend
+        removeLikedProducts({ id })
+            .then(res => {
+                if (res.data.length > 0) {
+                    this.setState({ products: res.data, isLoading: false })
+                } else {
+                    this.setState({ isError: true, isLoading: false })
+                }
+            })
+            .catch(err => this.setState({ isError: true, isLoading: false }))
     }
 
     render() {
@@ -58,7 +71,7 @@ export default class Home extends Component {
                     <Loader /> :
                     <Container >
                         <Row className={`${blockname}__row`}>
-                            {!isError && this.renderProducts()}
+                            {!isError && this.renderLikedProducts()}
                         </Row>
                     </Container>
                 }

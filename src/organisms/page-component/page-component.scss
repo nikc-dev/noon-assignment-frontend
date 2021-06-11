@@ -1,4 +1,10 @@
+@import "~bootstrap/scss/bootstrap";
+
 .page {
     background-color: #edeef5;
     max-height: 100%;
+    @include media-breakpoint-down(sm) {
+        padding-bottom: 50px;
+        overflow: hidden;
+     }
 }

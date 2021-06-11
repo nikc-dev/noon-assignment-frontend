@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NavBar from '../../molecules/navbar'
 import Home from '../../molecules/home'
-import Liked from '../../molecules/home'
+import Liked from '../../molecules/liked'
 import './page-component.scss'
 
 const blockname = 'page'
@@ -9,7 +9,8 @@ const blockname = 'page'
 export default class Page extends Component {
 
     state = {
-        homeView: true
+        homeView: true,
+        isMobile: window.innerWidth < 768,
     }
 
     componentDidMount() {
@@ -17,15 +18,15 @@ export default class Page extends Component {
     }
 
     toggleView = (toggle) => {
-        console.log(toggle)
         this.setState({ homeView: toggle })
     }
 
     render() {
-        const { homeView } = this.state;
+        const { homeView, isMobile } = this.state;
         return (
             <div className={blockname}>
                 <NavBar
+                    isMobile={isMobile}
                     toggle={this.toggleView}
                 />
                 {homeView ? (

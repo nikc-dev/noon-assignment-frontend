@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import Page from './organisms/page-component'
 import './App.scss'
 

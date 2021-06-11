@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should test the product component renders correctly 1`] = `
+<div
+  className="product"
+>
+  <img
+    className="product__img"
+  />
+  <p
+    className="product__name"
+  />
+  <p
+    className="product__description"
+  />
+  <Container
+    className="product__like-container"
+    fluid={false}
+  >
+    <Row
+      noGutters={false}
+    >
+      <Col
+        className="product__left-col"
+      >
+        <img
+          alt="express"
+          className="product__express-img"
+          src="https://z.nooncdn.com/s/app/com/noon/images/fulfilment_express_v2-en.svg"
+        />
+      </Col>
+      <Col
+        className="product__right-col"
+      >
+        <button
+          className="product__like-btn"
+          id="product-btn"
+          onClick={[Function]}
+          type="button"
+        >
+          Like
+        </button>
+      </Col>
+    </Row>
+  </Container>
+</div>
+`;

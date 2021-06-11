@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="liked"
+>
+  <div
+    className="loader"
+  />
+</div>
+`;
+
+exports[`should render error with api empty response 1`] = `
+<div
+  className="liked"
+>
+  <Loader />
+</div>
+`;
+
+exports[`should render liked products with api response 1`] = `
+<div
+  className="liked"
+>
+  <Loader />
+</div>
+`;
