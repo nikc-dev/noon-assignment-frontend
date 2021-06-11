@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.navbar {
+    background-color:#fcec03;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+
+    & h1 {
+        font-size: large;
+        color: black;
+      }
+    
+     &__links {
+        margin-left: auto;
+      } 
+
+    & a {
+        font-weight: 500;
+        color: black;
+        margin-left: 16px;
+        text-decoration: none;
+        padding: 6px;
+
+        &:hover {
+            color: #d1d1d1;
+        }
+      }
+  }
+  
